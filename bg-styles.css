@@ -54,3 +54,107 @@ button {
     color: white;
     cursor: pointer;
 }
+.primary {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    transform: translateY(85%);
+    text-align: center;
+    color: black;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(bg-2.jpg);/* (360deg,#224e4d 10%,#083023 360%); */
+    background-size: cover;
+    z-index: 1;
+}
+.primary h1 {
+    text-align: center;
+    position: relative;
+    top: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}
+.primary h3 {
+    text-align: center;
+    position: relative;
+    top: 50px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.form {
+    position: relative;
+    top: 40px;
+}
+.inpbox {
+    width: 800px;
+    padding: 15px 0;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #d44e26;
+    background: transparent;
+    color: white;
+}
+canvas {
+    border: 1px solid #000;
+    z-index: 2;
+    position: relative;
+    left: 53px;
+    top: 10px;
+}
+.form {
+    width: 1000px;
+    padding: 15px 15px;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    position: relative;
+    left: 12%;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #d44e26;
+    background: transparent;
+    color: rgb(0, 0, 0);
+}
+.form select {
+    width: 800px;
+    padding: 15px 0;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #d44e26;
+    background: transparent;
+    color: rgb(148, 131, 131);
+}
+.form button {
+    width: 800px;
+    padding: 15px 0;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #d44e26;
+    background: transparent;
+    color: rgb(239, 73, 73);
+}
+.button:hover {
+    width: 800px;
+    padding: 15px 0;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #ff3c00;
+    background: transparent;
+    color: rgb(140, 85, 228);
+}
