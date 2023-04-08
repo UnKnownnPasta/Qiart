@@ -1,3 +1,4 @@
+--- Currently the functionality is bit broken, check back later ---
 # Qiart
 Just a project for a program I'm in
 
