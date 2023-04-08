@@ -1,13 +1,15 @@
 <html>
+
 <head>
     <title>Qiart</title>
     <link rel="stylesheet" href="bg-styles.css">
     <link rel="icon" type="image/png" href="qiart-ico.ico">
 </head>
+
 <body>
     <div class="bg">
         <div class="navbar">
-            <img src="qiart-logo.png" alt="logo" height>
+            <img src="qiart-logo.png" alt="logo">
             <ul>
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">INFO</a></li>
@@ -15,13 +17,114 @@
         </div>
 
         <div id="primary" class="primary">
-            <link rel="stylesheet" href="main-data.css">
             <h1>What are we making today?</h1>
-            <div class="form">
+
+            <div class="form" id="abcde">
                 <input type="text" id="inp" class="inpbox"><br><br>
-                <input type="submit" value="Submit" hidden="hidden" id="btn" onclick="userInput()">
+                <select id="borderColor" class="form-dropdown">
+                    <option value="">Border Color:</option>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                </select><br><br>
+                <select id="borderRigidity" class="form-dropdown">
+                    <option value="">Border Rigidity:</option>
+                    <option value="solid">Solid</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="dashed">Dashed</option>
+                </select><br><br>
+                <select id="bgColor" class="form-dropdown">
+                    <option value="">Background Color:</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="purple">Purple</option>
+                    <option value="orange">Orange</option>
+                </select><br><br>
+                <input type="submit" value="Submit" hidden id="btn" onclick="userInput()">
             </div>
-            
+
+            <button id="generateBtn" style="position: relative; top: 40px;" onclick="runScriptById()">Create!</button>
+            <canvas id="canvas" width="400" height="400" hidden></canvas>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+            <script id="canvasScript">
+                function setup() {
+                    noLoop()
+                    // Create canvas
+                    createCanvas(400, 400);
+                    console.log(1)
+                }
+                function draw() {
+                    noLoop()
+                    // Clear canvas
+                    background(255);
+
+                    const canvasSize = 400; // Size of the canvas
+                    const borderWidth = 20; // Width of the border
+                    const patternSize = random(1, 4); // Size of the pattern pixels
+                    const centerBoxSize = 380; // Size of the center box
+                    const centerBoxOffsetX = 10 // X offset for centering the box
+                    const centerBoxOffsetY = 10 // Y offset for centering the box
+
+                    // Draw square
+                    fill(0); // Border color
+                    rect(0, 0, 400, 500);
+
+                    // Generate random pattern pixels
+                    for (let i = 0; i < borderWidth; i++) {
+                        const x = random(borderWidth, 400);
+                        const y = random(borderWidth, 500);
+                        const color = getRandomColor(); // Get random color for pattern pixels
+                        fill(color);
+                        rect(x, 0, patternSize, 400);
+                        rect(0, y, 500, patternSize);
+                    }
+
+                    // Draw center box
+                    fill(256); // Center box color
+                    rect(centerBoxOffsetX, centerBoxOffsetY, centerBoxSize, centerBoxSize);
+                }
+
+                // Helper function to generate random color
+                function getRandomColor() {
+                    const r = floor(random(128));
+                    const g = floor(random(256));
+                    const b = floor(random(256));
+                    return color(r, g, b);
+                }
+            </script>
+
+            <script>
+                function removeScreenElem() {
+                    document.getElementById("inp").style.display = "none";
+                    document.getElementById("borderColor").style.display = "none";
+                    document.getElementById("borderRigidity").style.display = "none";
+                    document.getElementById("bgColor").style.display = "none";
+                    document.getElementById("btn").style.display = "none";
+                    document.getElementById("canvas").style.display = "block";
+                    document.getElementsByTagName("h1")[0].style.display = "none";
+                    document.getElementsByTagName("button")[0].style.display = "none";
+                }
+                function runScriptById() {
+                    removeScreenElem()
+                    var scriptElement = document.getElementById('canvasScript');
+                    var scriptURL = scriptElement.src;
+
+                    // Create a new XMLHttpRequest object to load the script
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                // Use eval() to execute the loaded script
+                                eval(xhr.responseText);
+                            } else {
+                                console.error('Failed to load script:', xhr.statusText);
+                            }
+                        }
+                    };
+                    xhr.open('GET', scriptURL, true);
+                    xhr.send();
+                }
+            </script>
+
         </div>
 
         <div class="content">
@@ -29,7 +132,6 @@
             <div>
                 <button onclick="getstarted()">GET STARTED</button>
             </div>
-
         </div>
         <script>
             function getstarted() {
@@ -43,21 +145,21 @@
 
             function userInput() {
                 console.log(document.getElementById('inp').value)
+                document.getElementById('loadico').removeAttribute('hidden')
+                document.getElementById('libload').removeAttribute('hidden')
+                var textRequested = document.getElementById('inp').value;
+                document.getElementById('libload').textContent = textRequested;
             }
 
             var input = document.getElementById("inp");
-            // Execute a function when the user presses a key on the keyboard
-            input.addEventListener("keypress", function(event) {
-                // If the user presses the "Enter" key on the keyboard
+            input.addEventListener("keypress", function (event) {
                 if (event.key === "Enter") {
-                    // Cancel the default action, if needed
                     event.preventDefault();
-                    // Trigger the button element with a click
                     document.getElementById("btn").click();
                 }
             });
-            
         </script>
     </div>
 </body>
+
 </html>
