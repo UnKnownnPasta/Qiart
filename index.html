@@ -48,42 +48,37 @@
             <script id="canvasScript">
                 function setup() {
                     noLoop()
-                    // Create canvas
                     createCanvas(400, 400);
                     console.log(1)
                 }
                 function draw() {
                     noLoop()
-                    // Clear canvas
                     background(255);
 
-                    const canvasSize = 400; // Size of the canvas
-                    const borderWidth = 20; // Width of the border
-                    const patternSize = random(1, 4); // Size of the pattern pixels
-                    const centerBoxSize = 380; // Size of the center box
-                    const centerBoxOffsetX = 10 // X offset for centering the box
-                    const centerBoxOffsetY = 10 // Y offset for centering the box
-
-                    // Draw square
-                    fill(0); // Border color
+                    const canvasSize = 400;
+                    const borderWidth = 20; 
+                    const patternSize = random(1, 4)
+                    const centerBoxSize = 380;
+                    const centerBoxOffsetX = 10
+                    const centerBoxOffsetY = 10 
+                    fill(0);
                     rect(0, 0, 400, 500);
 
-                    // Generate random pattern pixels
+   
                     for (let i = 0; i < borderWidth; i++) {
                         const x = random(borderWidth, 400);
                         const y = random(borderWidth, 500);
-                        const color = getRandomColor(); // Get random color for pattern pixels
+                        const color = getRandomColor();
                         fill(color);
                         rect(x, 0, patternSize, 400);
                         rect(0, y, 500, patternSize);
                     }
 
                     // Draw center box
-                    fill(256); // Center box color
+                    fill(256); 
                     rect(centerBoxOffsetX, centerBoxOffsetY, centerBoxSize, centerBoxSize);
                 }
 
-                // Helper function to generate random color
                 function getRandomColor() {
                     const r = floor(random(128));
                     const g = floor(random(256));
