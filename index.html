@@ -2,14 +2,16 @@
 
 <head>
     <title>Qiart</title>
-    <link rel="stylesheet" href="bg-styles.css">
-    <link rel="icon" type="image/png" href="qiart-ico.ico">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="../data/qiart-ico.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.1/fabric.min.js"></script>
+    <script src="https://unpkg.com/js-markov"></script>
 </head>
 
 <body>
     <div class="bg">
         <div class="navbar">
-            <img src="qiart-logo.png" alt="logo">
+            <img src="../data/qiart-logo.png" alt="logo">
             <ul>
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">INFO</a></li>
@@ -20,106 +22,85 @@
             <h1>What are we making today?</h1>
 
             <div class="form" id="abcde">
-                <input type="text" id="inp" class="inpbox"><br><br>
-                <select id="borderColor" class="form-dropdown">
-                    <option value="">Border Color:</option>
-                    <option value="red">Red</option>
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                </select><br><br>
-                <select id="borderRigidity" class="form-dropdown">
-                    <option value="">Border Rigidity:</option>
-                    <option value="solid">Solid</option>
-                    <option value="dotted">Dotted</option>
-                    <option value="dashed">Dashed</option>
-                </select><br><br>
-                <select id="bgColor" class="form-dropdown">
-                    <option value="">Background Color:</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="purple">Purple</option>
-                    <option value="orange">Orange</option>
-                </select><br><br>
-                <input type="submit" value="Submit" hidden id="btn" onclick="userInput()">
-            </div>
+                <canvas id="canvas" width="1100" height="400" hidden></canvas>
+                <div class="form-input">
+                    <input type="text" id="inp" class="inpbox" placeholder="Enter your idea here">
+                </div>
+                <div class="form-row">
+                    <select id="borderColor" class="form-dropdown">
+                        <option value="red">Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                    </select>
+                    <select id="borderRigidity" class="form-dropdown">
+                        <option value="">Border Rigidity:</option>
+                        <option value="solid">Solid</option>
+                        <option value="dotted">Dotted</option>
+                        <option value="dashed">Dashed</option>
+                    </select>
+                    <select id="bgColor" class="form-dropdown">
+                        <option value="">Background Color:</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="purple">Purple</option>
+                        <option value="orange">Orange</option>
+                    </select>
 
-            <button id="generateBtn" style="position: relative; top: 40px;" onclick="runScriptById()">Create!</button>
-            <canvas id="canvas" width="400" height="400" hidden></canvas>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-            <script id="canvasScript">
-                function setup() {
-                    noLoop()
-                    createCanvas(400, 400);
-                    console.log(1)
-                }
-                function draw() {
-                    noLoop()
-                    background(255);
+                </div>
+                <h2 id="h2" hidden>e</h2>
+                <script>
+                    function triggerCmd() {
+                        document.getElementById("inp").style.display = "none";
+                        document.getElementById("borderColor").style.display = "none";
+                        document.getElementById("borderRigidity").style.display = "none";
+                        document.getElementById("bgColor").style.display = "none";
+                        document.getElementById("canvas").style.display = "block";
+                        document.getElementsByTagName("h1")[0].textContent = 'Hang in there.'
+                        document.getElementsByTagName("button")[0].style.display = "none";
 
-                    const canvasSize = 400;
-                    const borderWidth = 20; 
-                    const patternSize = random(1, 4)
-                    const centerBoxSize = 380;
-                    const centerBoxOffsetX = 10
-                    const centerBoxOffsetY = 10 
-                    fill(0);
-                    rect(0, 0, 400, 500);
+                        document.getElementById('canvas').style.display = 'flex'
+                        const canvas = new fabric.Canvas('canvas');
+                        canvas.backgroundColor = 'gray'
 
-   
-                    for (let i = 0; i < borderWidth; i++) {
-                        const x = random(borderWidth, 400);
-                        const y = random(borderWidth, 500);
-                        const color = getRandomColor();
-                        fill(color);
-                        rect(x, 0, patternSize, 400);
-                        rect(0, y, 500, patternSize);
+                        var rectWidth = 10;
+                        var canvasWidth = canvas.getWidth() - 1;
+                        var canvasHeight = canvas.getHeight() - 1;
+                        var rectColor = 'black';
+                        var rectTop = new fabric.Rect({ left: 0, top: 0, width: canvasWidth, height: rectWidth, fill: rectColor });
+                        var rectBottom = new fabric.Rect({ left: 0, top: canvasHeight - rectWidth, width: canvasWidth, height: rectWidth, fill: rectColor });
+                        var rectLeft = new fabric.Rect({ left: 0, top: 0, width: rectWidth, height: canvasHeight, fill: rectColor });
+                        var rectRight = new fabric.Rect({ left: canvasWidth - rectWidth, top: 0, width: rectWidth, height: canvasHeight, fill: rectColor });
+                        canvas.add(rectTop, rectBottom, rectLeft, rectRight);
+
+                        var inputText = document.getElementById('inp').value
+                        console.log(inputText)
+                        var input = "Give me some poetic info on " + inputText + ' in 20 words. You:'
+                        console.log(input)
+                        fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': 'Bearer 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',
+                                'Content-Type': 'application/json',
+                                'temperature': 0.1
+                            },
+                            body: JSON.stringify({
+                                prompt: input,
+                                max_tokens: 100
+                            })
+                        })
+                            .then(async response => await response.json())
+                            .then(data => {
+                                console.log(data)
+                                document.getElementById('h2').innerText = data.choices[0].text;
+                                document.getElementById('h2').style.display = 'block'
+                                document.getElementsByTagName('h1')[0].textContent = ''
+                            })
+                            .catch(error => console.error(error));
+
                     }
+                </script>
 
-                    // Draw center box
-                    fill(256); 
-                    rect(centerBoxOffsetX, centerBoxOffsetY, centerBoxSize, centerBoxSize);
-                }
-
-                function getRandomColor() {
-                    const r = floor(random(128));
-                    const g = floor(random(256));
-                    const b = floor(random(256));
-                    return color(r, g, b);
-                }
-            </script>
-
-            <script>
-                function removeScreenElem() {
-                    document.getElementById("inp").style.display = "none";
-                    document.getElementById("borderColor").style.display = "none";
-                    document.getElementById("borderRigidity").style.display = "none";
-                    document.getElementById("bgColor").style.display = "none";
-                    document.getElementById("btn").style.display = "none";
-                    document.getElementById("canvas").style.display = "block";
-                    document.getElementsByTagName("h1")[0].style.display = "none";
-                    document.getElementsByTagName("button")[0].style.display = "none";
-                }
-                function runScriptById() {
-                    removeScreenElem()
-                    var scriptElement = document.getElementById('canvasScript');
-                    var scriptURL = scriptElement.src;
-
-                    // Create a new XMLHttpRequest object to load the script
-                    var xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                            if (xhr.status === 200) {
-                                // Use eval() to execute the loaded script
-                                eval(xhr.responseText);
-                            } else {
-                                console.error('Failed to load script:', xhr.statusText);
-                            }
-                        }
-                    };
-                    xhr.open('GET', scriptURL, true);
-                    xhr.send();
-                }
-            </script>
-
+            </div>
+            <button class="createBtn" id="generateBtn" onclick="triggerCmd()">Create!</button>
         </div>
 
         <div class="content">
@@ -137,22 +118,6 @@
                     inline: 'start'
                 }, 6000);
             }
-
-            function userInput() {
-                console.log(document.getElementById('inp').value)
-                document.getElementById('loadico').removeAttribute('hidden')
-                document.getElementById('libload').removeAttribute('hidden')
-                var textRequested = document.getElementById('inp').value;
-                document.getElementById('libload').textContent = textRequested;
-            }
-
-            var input = document.getElementById("inp");
-            input.addEventListener("keypress", function (event) {
-                if (event.key === "Enter") {
-                    event.preventDefault();
-                    document.getElementById("btn").click();
-                }
-            });
         </script>
     </div>
 </body>
