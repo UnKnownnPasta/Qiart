@@ -6,7 +6,7 @@
 .bg{
     width: 100%;
     height: 110%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../data/background.jpg), url(../data/overlay.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(background.jpg), url(overlay.jpg);
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply;
@@ -61,7 +61,7 @@ button {
     transform: translateY(85%);
     text-align: center;
     color: black;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../data/bg-2.jpg);/* (360deg,#224e4d 10%,#083023 360%); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(bg-2.jpg);/* (360deg,#224e4d 10%,#083023 360%); */
     background-size: cover;
     z-index: 1;
 }
