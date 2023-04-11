@@ -6,7 +6,7 @@
 .bg{
     width: 100%;
     height: 110%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(background.jpg), url(overlay.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../data/background.jpg), url(../data/overlay.jpg);
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply;
@@ -61,7 +61,7 @@ button {
     transform: translateY(85%);
     text-align: center;
     color: black;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(bg-2.jpg);/* (360deg,#224e4d 10%,#083023 360%); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../data/bg-2.jpg);/* (360deg,#224e4d 10%,#083023 360%); */
     background-size: cover;
     z-index: 1;
 }
@@ -71,6 +71,7 @@ button {
     top: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: white;
+    margin: 0px auto;
 }
 .primary h3 {
     text-align: center;
@@ -78,14 +79,10 @@ button {
     top: 50px;
     color: white;
     font-family: sans-serif;
-}
-
-.form {
-    position: relative;
-    top: 40px;
+    margin: 0px auto;
 }
 .inpbox {
-    width: 800px;
+    width: 600px;
     padding: 15px 0;
     font-family: monospace;
     text-align: center;
@@ -99,28 +96,50 @@ button {
 }
 canvas {
     border: 1px solid #000;
-    z-index: 2;
     position: relative;
-    left: 53px;
-    top: 10px;
+    margin: 0px auto;
+}
+.primary h2 {
+    font-family: cursive;
+    position: absolute; 
+    top: 40%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #d9e0cf;
 }
 .form {
-    width: 1000px;
-    padding: 15px 15px;
+    width: 1100px;
     font-family: monospace;
     text-align: center;
     font-size: large;
-    margin: 20px;
-    position: relative;
-    left: 12%;
-    border-radius: 25px;
+    margin: 0px auto;
+    align-self: center;
+    top: 40px; position: relative;
     font-weight: bold;
     border: 2px solid #d44e26;
     background: transparent;
     color: rgb(0, 0, 0);
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.form-row {
+    display: flex;
+    gap: 10px; 
+    align-items: center;
+    margin-top: 10px;
+    margin: 0px auto;
+}
+.form-input {
+    width: 2000px;
+    display: block;
+    flex-wrap: wrap;
+    align-self: center;
+    margin: 0px auto;
 }
 .form select {
-    width: 800px;
+    width: 300px;
     padding: 15px 0;
     font-family: monospace;
     text-align: center;
@@ -133,7 +152,7 @@ canvas {
     color: rgb(148, 131, 131);
 }
 .form button {
-    width: 800px;
+    width: 100px;
     padding: 15px 0;
     font-family: monospace;
     text-align: center;
@@ -145,16 +164,8 @@ canvas {
     background: transparent;
     color: rgb(239, 73, 73);
 }
-.button:hover {
-    width: 800px;
-    padding: 15px 0;
-    font-family: monospace;
-    text-align: center;
-    font-size: large;
-    margin: 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    border: 2px solid #ff3c00;
-    background: transparent;
-    color: rgb(140, 85, 228);
+.createBtn {
+    position: relative;
+    top: 200px;
+    left: 10px;
 }
