@@ -1,126 +1,65 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-    <title>Qiart</title>
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="icon" type="image/png" href="qiart-ico.ico">
+  <head>
+    <title>QiArt</title>
+    <link rel="icon" href="./qiart-ico.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.1/fabric.min.js"></script>
-    <script src="https://unpkg.com/js-markov"></script>
-</head>
+  </head>
 
-<body>
-    <div class="bg">
-        <div class="navbar">
-            <img src="qiart-logo.png" alt="logo">
-            <ul>
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="#">INFO</a></li>
-            </ul>
-        </div>
+  <body>
+    <link rel="stylesheet" href="./design.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Righteous">
 
-        <div id="primary" class="primary">
-            <h1>What are we making today?</h1>
+    <div class="topDisp">
+      <h1 style="opacity: 0; position: fixed;">-</h1>
+      <div class="rectangle"></div>
+      <h1>QiArt~</h1>
+      <h2 id="byvl">Bring your vision to life.</h2>
 
-            <div class="form" id="abcde">
-                <canvas id="canvas" width="1100" height="400" hidden></canvas>
-                <div class="form-input">
-                    <input type="text" id="inp" class="inpbox" placeholder="Enter your idea here">
-                </div>
-                <div class="form-row">
-                    <select id="borderColor" class="form-dropdown">
-                        <option value="">Border Color</option>
-                        <option value="red">Red</option>
-                        <option value="blue">Blue</option>
-                        <option value="green">Green</option>
-                    </select>
-                    <select id="borderRigidity" class="form-dropdown">
-                        <option value="">Border Rigidity</option>
-                        <option value="solid">Solid</option>
-                        <option value="dotted">Dotted</option>
-                        <option value="dashed">Dashed</option>
-                    </select>
-                    <select id="bgColor" class="form-dropdown">
-                        <option value="">Background Color</option>
-                        <option value="yellow">Yellow</option>
-                        <option value="purple">Purple</option>
-                        <option value="orange">Orange</option>
-                    </select>
-
-                </div>
-                <h2 id="h2" hidden>e</h2>
-                <script>
-                    function triggerCmd() {
-                        document.getElementById("inp").style.display = "none";
-                        document.getElementById("borderColor").style.display = "none";
-                        document.getElementById("borderRigidity").style.display = "none";
-                        document.getElementById("bgColor").style.display = "none";
-                        document.getElementById("canvas").style.display = "block";
-                        document.getElementsByTagName("h1")[0].textContent = 'Hang in there.'
-                        document.getElementsByTagName("button")[0].style.display = "none";
-
-                        document.getElementById('canvas').style.display = 'flex'
-                        const canvas = new fabric.Canvas('canvas');
-                        canvas.backgroundColor = 'gray'
-
-                        var rectWidth = 10;
-                        var canvasWidth = canvas.getWidth() - 1;
-                        var canvasHeight = canvas.getHeight() - 1;
-                        var rectColor = 'black';
-                        var rectTop = new fabric.Rect({ left: 0, top: 0, width: canvasWidth, height: rectWidth, fill: rectColor });
-                        var rectBottom = new fabric.Rect({ left: 0, top: canvasHeight - rectWidth, width: canvasWidth, height: rectWidth, fill: rectColor });
-                        var rectLeft = new fabric.Rect({ left: 0, top: 0, width: rectWidth, height: canvasHeight, fill: rectColor });
-                        var rectRight = new fabric.Rect({ left: canvasWidth - rectWidth, top: 0, width: rectWidth, height: canvasHeight, fill: rectColor });
-                        canvas.add(rectTop, rectBottom, rectLeft, rectRight);
-
-                        var inputText = document.getElementById('inp').value
-                        console.log(inputText)
-                        var input = "Give me some poetic info on " + inputText + ' in 20 words. You:'
-                        console.log(input)
-                        fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
-                            method: 'POST',
-                            headers: {
-                                'Authorization': 'Bearer ',
-                                'Content-Type': 'application/json',
-                                'temperature': 0.1
-                            },
-                            body: JSON.stringify({
-                                prompt: input,
-                                max_tokens: 100
-                            })
-                        })
-                            .then(async response => await response.json())
-                            .then(data => {
-                                console.log(data)
-                                document.getElementById('h2').innerText = data.choices[0].text;
-                                document.getElementById('h2').style.display = 'block'
-                                document.getElementsByTagName('h1')[0].textContent = ''
-                            })
-                            .catch(error => console.error(error));
-
-                    }
-                </script>
-
-            </div>
-            <button class="createBtn" id="generateBtn" onclick="triggerCmd()">Create!</button>
-        </div>
-
-        <div class="content">
-            <h1>Bring your vision to life.</h1>
-            <div>
-                <button onclick="getstarted()">GET STARTED</button>
-            </div>
-        </div>
-        <script>
-            function getstarted() {
-                const el = document.getElementById("primary");
-                el.scrollIntoView({
-                    block: 'start',
-                    behavior: 'smooth',
-                    inline: 'start'
-                }, 6000);
-            }
-        </script>
+      <div class="links">
+        <ul>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="$">SUPPORT</a></li>
+        </ul>
+      </div>
     </div>
-</body>
+    
+    <div class="content">
+      <h1>What are we making today?</h1>
+      
+      <div class="form" id="abcde">
+        <canvas id="canvas" width="1100" height="400" hidden></canvas>
+        <div class="form-input">
+            <input type="text" id="inp" class="inpbox" placeholder="Enter your idea here">
+        </div>
+        <div class="form-row">
+            <select id="borderColor" class="form-dropdown">
+                <option value="">Border Color</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+            </select>
+            <select id="borderRigidity" class="form-dropdown">
+                <option value="">Border Rigidity</option>
+                <option value="solid">Solid</option>
+                <option value="dotted">Dotted</option>
+                <option value="dashed">Dashed</option>
+            </select>
+            <select id="bgColor" class="form-dropdown">
+                <option value="">Background Color</option>
+                <option value="yellow">Yellow</option>
+                <option value="purple">Purple</option>
+                <option value="orange">Orange</option>
+            </select>
+
+        </div>
+        <h2 id="h2" hidden>e</h2>
+        <script src="./code.js"></script>
+
+        <button class="createBtn" id="generateBtn" onclick="triggerCmd()">Create!</button>
+    </div>
+    </div>
+
+  </body>
 
 </html>
