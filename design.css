@@ -1,86 +1,81 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-.bg{
-    width: 100%;
-    height: 110%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(background.jpg), url(overlay.jpg);
+body {
+    background-color: #f2f2f2;
+    background-image: url('./background.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
-    background-blend-mode: multiply;
-}
-.navbar{
-    width: 95%;
-    margin: auto;
-    padding: 0px 0;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    overflow-x: hidden;
+    margin: 0;
 }
-.navbar ul li {
-    list-style: none;
-    display: inline-block;
-    margin: 0 20px;
+.rectangle {
+    position: absolute;
+    top: 4px; left: 4px; right: 4px;
+    width: 98.2vw; height: 73px;
+    border-radius: 10px;
+    background-color: black;
+    opacity: 0.3;
 }
-.navbar ul li a {
+ul {
+    position: absolute;
+    right: 30px;
+    top: 14px
+}
+ul li {
+    display: inline-flex;
+    margin: 0px 10px;
+}
+ul li a {
+    font-family: 'Audiowide', serif;
     text-decoration: none;
-    color: white;
-    text-transform: uppercase;
+    color: rgb(218, 187, 74);
+}
+.topDisp {
+    display: grid;
+    z-index: 0;
+    margin: 0;
+}
+.topDisp h1 {
+    font-family: 'Sofia', serif;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    position: absolute;
+    height: min-content;
+    left: 30px; top: -35px;
+    font-size: 50px;
+    width: 100px;
+}
+.topDisp h2 {
+    font-size: 69px;
+    font-family: 'Righteous', serif;
+    position: absolute;
+    width: max-content;
+    top: 45%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 3px 3px 3px rgba(75, 75, 75, 0.285);
+    background-image: url(./galaxy.avif);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 .content {
-    width: 100%;
     position: absolute;
-    top: 50%;
-    transform: translateY(-70%);
+    width: 100%;
+    height: 100%;
+    background-color: #f2f2f2;
     text-align: center;
-    color: white;
+    margin: 0;
+    background-color:#2a2727;
+    transform: translateY(100%);
 }
 .content h1 {
-    font-size: 70px;
-    margin-top: 80px;
-}
-button {
-    width: 200px;
-    padding: 15px 0;
-    font-family: monospace;
-    text-align: center;
-    margin: 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    border: 2px solid #09cc92;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-}
-.primary {
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    transform: translateY(85%);
-    text-align: center;
-    color: black;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(bg-2.jpg);/* (360deg,#224e4d 10%,#083023 360%); */
-    background-size: cover;
-    z-index: 1;
-}
-.primary h1 {
     text-align: center;
     position: relative;
     top: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: white;
+    color: rgb(255, 255, 255);
     margin: 0px auto;
 }
-.primary h3 {
-    text-align: center;
-    position: relative;
-    top: 50px;
-    color: white;
-    font-family: sans-serif;
-    margin: 0px auto;
-}
+
 .inpbox {
     width: 600px;
     padding: 15px 0;
@@ -99,15 +94,7 @@ canvas {
     position: relative;
     margin: 0px auto;
 }
-.primary h2 {
-    font-family: cursive;
-    position: absolute; 
-    top: 40%;
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #d9e0cf;
-}
+
 .form {
     width: 1100px;
     font-family: monospace;
@@ -117,7 +104,6 @@ canvas {
     align-self: center;
     top: 40px; position: relative;
     font-weight: bold;
-    border: 2px solid #d44e26;
     background: transparent;
     color: rgb(0, 0, 0);
     padding: 20px;
@@ -166,6 +152,6 @@ canvas {
 }
 .createBtn {
     position: relative;
-    top: 200px;
-    left: 10px;
+    top: 30px; left: 49%;
+    transform: translate(-50%, -50%);   
 }
