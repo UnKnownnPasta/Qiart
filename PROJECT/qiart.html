@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>QiArt</title>
+  <link rel="icon" href="./qiart-ico.ico">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.1/fabric.min.js"></script>
+</head>
+
+<body>
+  <link rel="stylesheet" href="./design.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Righteous">
+
+  <div class="topDisp"> <!-- Landing page -->
+    <div class="rectangle"></div>
+    <h1 class="logo">QiArt~</h1>
+    <h2 class="byvl">Bring your vision to life.</h2>
+    <h2 class="bckdrp">Bring your vision to life.</h2>
+
+    <div class="links">
+      <ul>
+        <li><a href="create.html">ABOUT US</a></li>
+        <li><a href="$"></a></li>
+      </ul>
+    </div>
+
+    <button class="getstarted">Get Started!</button>
+  </div>
+
+  <div class="afterLanding"> <!-- Below landing page -->
+    <h1 id="wam" class="wam">What are we making today?</h1>
+
+    <button class="swatchy-trigger">Select a Color</button>
+    <input type="text" class="swatchy-output" disabled>
+    <script> Swatchy() </script>
+
+    <div class="form" id="abcde">
+      <canvas id="canvas" width="1100" height="400" hidden></canvas>
+      <div class="form-input">
+        <input type="text" id="inp" class="inpbox" placeholder="Enter your idea here">
+      </div>
+
+      <div class="form-row">
+        <select id="borderRigidity" class="form-dropdown">
+          <option disabled hidden selected value="dashed">Border Rigidity</option>
+          <option value="solid">Solid</option>
+          <option value="dotted">Thin Line</option>
+          <option value="dashed">Dashed</option>
+        </select>
+        <select id="borderRigidity" class="form-dropdown">
+          <option disabled hidden selected value="dashed">Border Rigidity</option>
+          <option value="solid">Solid</option>
+          <option value="dotted">Thin Line</option>
+          <option value="dashed">Dashed</option>
+        </select>
+        <select id="bgColor" class="form-dropdown">
+          <option disabled hidden selected value="gray">Background Color</option>
+          <option value="gray">Gray</option>
+          <option value="yellow">Yellow</option>
+          <option value="purple">Purple</option>
+          <option value="orange">Orange</option>
+        </select>
+      </div>
+
+      <h2 id="h2" hidden>Lorem Ipsum</h2>
+      <script src="./code.js"></script>
+
+      <button id="createBtn" class='createBtn' onclick="triggerCmd()">Create!</button>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+body {
+    background-color: #f2f2f2;
+    background-image: url('./background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    overflow-x: hidden;
+    margin: 0;
+    overflow-y: scroll;
+}
+.rectangle {
+    position: absolute;
+    top: 4px; left: 6px; right: 1px;
+    width: 98vw; height: 73px;
+    border-radius: 10px;
+    background-color: black;
+    opacity: 0.3;
+}
+ul {
+    position: absolute;
+    right: 30px;
+    top: 14px
+}
+ul li {
+    display: inline-flex;
+    margin: 0px 10px;
+}
+ul li a:hover::after {
+    text-decoration: underline;
+    size: 20px;
+    transition: size 0.3s ease-in-out;
+}
+ul li a {
+    font-family: 'Audiowide', serif;
+    text-decoration: none;
+    color: rgb(218, 187, 74);
+}
+.topDisp {
+    display: grid;
+    z-index: 0;
+    margin: 0;
+}
+.topDisp > .logo {
+    font-family: 'Sofia', serif;
+    text-shadow: 3px 4px 3px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    position: absolute;
+    height: min-content;
+    left: 30px; top: -35px;
+    font-size: 50px;
+    width: 100px;
+}
+.topDisp > .byvl {
+    font-size: 69px;
+    font-family: 'Righteous', serif;
+    position: absolute;
+    width: max-content;
+    top: 35%; left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(./galaxy.png);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    z-index: 3;
+}
+.topDisp > .bckdrp {
+    font-size: 70px;
+    font-family: 'Righteous', serif;
+    position: absolute;
+    width: max-content;
+    top: 35.5%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000; opacity: 0.5;
+    z-index: 2;
+}
+.getstarted {
+    position: absolute;
+    background-color: transparent;
+    border: 3px solid;
+    border-radius: 10px;
+    color: purple;
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: all 0.3s linear;
+    opacity: 0.7;
+    font-weight: 200;
+    font-family: 'Audiowide', serif;
+    transform: translate(-50%, -50%);
+    top: 56%; left: 50%;
+}
+.getstarted:hover {
+    cursor: pointer;
+    border-radius: 100px;
+    color: linear-gradient(to right, purple, red);
+    border-image-slice: 1;
+    opacity: 1;
+    animation-duration: 1s;
+}
+
+.afterLanding {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f2f2f2;
+    text-align: center;
+    margin: 0 auto;
+    z-index: 1;
+    background-image: url(./galaxy.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateY(100%);
+}
+.afterLanding > .wam {
+    text-align: center;
+    position: relative;
+    top: 30px; left: 49%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(255, 255, 255);
+    margin: 0px auto;
+}
+
+.inpbox {
+    width: 1000px;
+    padding: 15px 0;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #d44e26;
+    background: transparent;
+    color: white;
+}
+canvas {
+    border: 1px solid #000;
+    position: relative;
+    margin: 0px auto;
+}
+
+.form {
+    width: 1100px;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 0px auto;
+    align-self: center;
+    align-items: center;
+    top: 40px; position: relative;
+    font-weight: bold;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form select {
+    width: 300px;
+    padding: 15px 0;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #d44e26;
+    background: transparent;
+    color: rgb(148, 131, 131);
+}
+.createBtn {
+    width: 100px;
+    padding: 15px 0;
+    font-family: monospace;
+    text-align: center;
+    font-size: large;
+    margin: 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #d44e26;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    position: relative;
+    top: 30px; left: 46%;
+    transform: translate(-50%, -50%);
+}
