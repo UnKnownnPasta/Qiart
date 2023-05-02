@@ -1,9 +1,8 @@
 data/
 bs/
-test.html
 package.json
 package-lock.json
 desktop.ini
-node_modules
+node_modules/
 me when concentration/
 assets/logo.png
