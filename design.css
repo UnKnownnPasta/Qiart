@@ -1,6 +1,6 @@
 body {
     background-color: #f2f2f2;
-    background-image: url('/assets/background.jpg');
+    background-image: url('assets/background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -57,12 +57,13 @@ ul li a {
     width: max-content;
     top: 35%; left: 50%;
     transform: translate(-50%, -50%);
-    background-image: url(/assets/galaxy.png);
+    background-image: url(assets/galaxy.png);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;
     background-clip: text;
     z-index: 3;
 }
+/* all: unset */
 .topDisp > .bckdrp {
     font-size: 70px;
     font-family: 'Righteous', serif;
@@ -105,7 +106,7 @@ ul li a {
     text-align: center;
     margin: 0 auto;
     z-index: 1;
-    background-image: url(/assets/galaxy.jpg);
+    background-image: url(assets/galaxy.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     transform: translateY(100%);
