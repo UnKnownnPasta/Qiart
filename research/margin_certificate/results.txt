@@ -1,0 +1,28 @@
+
+=== gaussian: N=20000  actual flip rate = 0.3250%
+certified tokens        : 49.66%
+flips among certified   : 0  (must be 0)
+flips among uncertified : 65 of 10067  = 0.646%
+model-predicted flip rate overall = 0.4760%  vs actual 0.3250%
+predicted-p bin        n    mean_pred  empirical
+[0.0000,0.0001)   19150    0.00000    0.00000
+[0.0001,0.0010)     118    0.00040    0.00000
+[0.0010,0.0100)     180    0.00406    0.00000
+[0.0100,0.0500)     152    0.02459    0.00658
+[0.0500,0.2000)     209    0.11126    0.05742
+[0.2000,0.5000)     188    0.34913    0.26596
+[0.5000,1.0001)       3    0.59342    0.66667
+
+=== outlier: N=20000  actual flip rate = 0.3300%
+certified tokens        : 65.72%
+flips among certified   : 0  (must be 0)
+flips among uncertified : 66 of 6855  = 0.963%
+model-predicted flip rate overall = 0.4013%  vs actual 0.3300%
+predicted-p bin        n    mean_pred  empirical
+[0.0000,0.0001)   19226    0.00000    0.00000
+[0.0001,0.0010)     128    0.00040    0.00000
+[0.0010,0.0100)     156    0.00412    0.00000
+[0.0100,0.0500)     153    0.02567    0.00000
+[0.0500,0.2000)     172    0.11577    0.07558
+[0.2000,0.5000)     163    0.33379    0.32515
+[0.5000,1.0001)       2    0.65697    0.00000
