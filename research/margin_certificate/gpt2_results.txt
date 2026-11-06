@@ -1,0 +1,21 @@
+positions 24576 (96 sequences)  flip rate A-vs-fp16 3.971%  A-vs-fp32 3.939%
+flips landing outside A's top-50: 0
+
+=== alpha=0.01: 30 random sequence-level splits (calibrate on half, test on half) ===
+method               certified (mean±sd)   P(cert & flip) vs fp16   P(cert & flip) vs fp32 [transfer]
+abs budget           76.63% ± 0.88%     0.0195% (max 0.0326%)   0.0195% (max 0.0326%)
+Cauchy-Schwarz       66.25% ± 1.41%     0.0065% (max 0.0163%)   0.0027% (max 0.0081%)
+cancellation S       79.12% ± 0.91%     0.0307% (max 0.0570%)   0.0277% (max 0.0488%)
+S minus abs-budget certified fraction: +2.49 pts  (sd 0.38, min +1.66, max +3.15)
+
+=== alpha=0.001: 30 random sequence-level splits (calibrate on half, test on half) ===
+method               certified (mean±sd)   P(cert & flip) vs fp16   P(cert & flip) vs fp32 [transfer]
+abs budget           54.60% ± 3.22%     0.0000% (max 0.0000%)   0.0000% (max 0.0000%)
+Cauchy-Schwarz       46.60% ± 3.53%     0.0000% (max 0.0000%)   0.0000% (max 0.0000%)
+cancellation S       55.56% ± 2.96%     0.0000% (max 0.0000%)   0.0000% (max 0.0000%)
+S minus abs-budget certified fraction: +0.96 pts  (sd 2.63, min -4.14, max +6.36)
+
+=== flip prediction (A vs fp16), higher AUC = better ranking of fragile tokens ===
+raw margin  gap_min    AUC(test) 0.9591   Brier skill 0.266   log-loss 0.0870
+gap/S  (min over j)    AUC(test) 0.9590   Brier skill 0.264   log-loss 0.0876
+gap/CS (min over j)    AUC(test) 0.9621   Brier skill 0.279   log-loss 0.0844

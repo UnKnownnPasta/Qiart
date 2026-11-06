@@ -8,32 +8,28 @@ my novelty checks were a few searches each, not a literature review. Verify befo
 
 ---
 
-## 1. "Safe token" certificates for LLM output  — prototype built
+## 1. "Safe token" certificates for LLM output  — researched on real GPT-2 (see margin_certificate/README.md)
 
-**One line:** The same prompt gives different answers on different GPUs. A token is safe if its lead over the
-runner-up is bigger than the rounding noise times how much cancellation its logit gap involves.
+**One line:** The same prompt gives different answers on different GPUs. Which tokens are safe, in advance, with a guarantee?
 
-**Category gap:** Existing work *measures* flip rates (empirically, or with a heuristic flip-probability model)
-and *mitigates* them (deterministic kernels, margin-triggered re-verification). I found no per-token
-certificate with a deterministic bound that a deployer can compute from the hidden state.
+**Correction to my first pitch:** I said no per-token bound existed. A generic margin lemma (margin > 2x logit
+error => same argmax) already exists, so that part is not new. And on real GPT-2 my per-token "cancellation"
+error term barely beat the plain error budget (+2.5 points certified, sd 0.4), and the raw margin predicts
+flips as well as any normalised score. The synthetic prototype's good news did not transfer: a Gaussian
+flip-probability model predicted 1.5% flips vs 3.9% actual.
 
-**Math:** gap = u·h, fragility S = Σ|uᵢhᵢ|. Any two stacks can only disagree on the sign of the gap if
-|gap| ≤ (u_X + u_Y + γ_X + γ_Y)·S (Higham-style first-order bound, any summation order). Plus a CLT model for
-P(flip) on uncertified tokens, and 1 − Π(1 − pₜ) for a whole response.
+**What survived:** greedy tokens differ bf16-vs-fp16 at 3.97% of positions on real GPT-2, and a single
+conformally-calibrated margin threshold gives a finite-sample guarantee: at alpha=1%, margin > 0.158 nats
+certifies 91% of tokens; at alpha=0.1%, margin > 0.366 nats certifies 81%. That is a useful, deployable,
+honest result, but it is closer to "calibrated risk control for a known phenomenon" than a new theorem.
 
-**Demo:** a response where each token is green (certified), amber, or red, with a "chance this answer differs on
-other hardware" number.
-
-**Result so far (synthetic only):** see `margin_certificate/results.txt`. 0 flips among certified tokens
-(50–66% of tokens certified); the probability model is conservative (over-predicts flips by ~1.2–2.5x).
-
-**Limits:** covers the output head only (body error enters as a perturbation on h and is not bounded yet);
-synthetic weights because Hugging Face is blocked here; one pair of implementations tested.
+**Still open (and where novelty might be):** sequence-level divergence prediction under free-running
+generation, domain shift of the calibration, larger models, other kernel/hardware pairs. None tested yet.
 
 Sources: [cross-GPU nondeterminism](https://arxiv.org/abs/2609.25624),
 [greedy decoding not precision-invariant](https://arxiv.org/pdf/2609.26621),
 [margin-triggered verification](https://arxiv.org/html/2605.30218v1),
-[original NeurIPS study](https://arxiv.org/abs/2506.09501).
+[Lipschitz certification under floating point](https://arxiv.org/abs/2603.13334).
 
 ---
 

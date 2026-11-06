@@ -1,0 +1,19 @@
+
+=== alpha=0.01: certify token if score > lam,  lam from conformal risk control  (30 sequence-level splits) ===
+score                 certified (mean±sd)   P(cert & flip) vs fp16 (max)    vs fp32 [transfer]   P(flip | cert)
+raw margin           91.19% ± 0.45%     0.9630% (1.3835%)        0.9172% (1.3102%)     1.0554%
+gap/S                91.34% ± 0.38%     0.9904% (1.2533%)        0.9543% (1.2451%)     1.0839%
+gap/CS               91.56% ± 0.37%     0.9231% (1.1719%)        0.8906% (1.1312%)     1.0079%
+margin + top-2 only  91.18% ± 0.40%     1.0018% (1.3428%)        0.9535% (1.2614%)     1.0982%
+
+=== alpha=0.001: certify token if score > lam,  lam from conformal risk control  (30 sequence-level splits) ===
+score                 certified (mean±sd)   P(cert & flip) vs fp16 (max)    vs fp32 [transfer]   P(flip | cert)
+raw margin           81.35% ± 0.76%     0.0982% (0.2279%)        0.1031% (0.2360%)     0.1204%
+gap/S                81.68% ± 1.09%     0.0865% (0.1709%)        0.0784% (0.1546%)     0.1053%
+gap/CS               81.24% ± 1.26%     0.0952% (0.1709%)        0.0833% (0.1546%)     0.1166%
+margin + top-2 only  81.36% ± 0.85%     0.0998% (0.2441%)        0.1047% (0.2523%)     0.1222%
+
+threshold lam on the raw logit margin, calibrated on ALL 96 sequences:
+  alpha=0.01: certify if margin > 0.158 nats  -> 91.24% of tokens
+  alpha=0.001: certify if margin > 0.366 nats  -> 81.17% of tokens
+median margin 1.29 nats; flip rate among tokens with margin < 0.5: 16.0%
